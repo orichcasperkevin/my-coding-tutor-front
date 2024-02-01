@@ -16,21 +16,25 @@ export default function TextEditor(props) {
     }, []);
 
     
-    return <>    
+    return <div className="p-8 border-solid">    
+        <div className='grid justify-items-end'>
+            <select className='class="rounded-full"'
+                onChange={(event)=>{setLang(event.target.value)}}
+                defaultValue={'python'}>
+                { lang_names.map((name,index)=>(
+                <option value={name}>{name}</option> 
+                ))
+                }            
+            </select>
+        </div>
         <CodeMirror 
+            className='rounded-md'
             value={value} 
             height="200px" 
             theme={ vscodeDark }
             extensions={[loadLanguage(lang)]}
             onChange={onCodeChanged} 
         />
-        <select name="cars" id="cars" form="carform" 
-        onChange={(event)=>{setLang(event.target.value)}}>
-            { lang_names.map((name,index)=>(
-               <option value={name}>{name}</option> 
-             ))
-            }            
-        </select>
-    </>;
+    </div>;
     
 }
